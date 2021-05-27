@@ -1,0 +1,87 @@
+﻿<h2>Cadastro de Produtos</h2>
+<hr />
+@model SistemaVendas_MVC.Models.ProdutoModel;
+<form asp-controller="Produto" asp-action="Cadastro" method="post">
+    <input type="hidden" asp-for="Id" value=" @Model.Id" />
+
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" value=" @Model.Nome" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Descrição</label>
+
+        <input type="text" asp-for="Descricao" class="form-control" value=" @Model.Descricao" />
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Preco_Unitario</label>
+        <input type="text" asp-for="Preco_Unitario" class="form-control" value=" @Model.Preco_Unitario" />
+        <span asp-validation-for="Preco_Unitario" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Quantidade_Estoque</label>
+        <input type="text" asp-for="Quantidade_Estoque" class="form-control" value=" @Model.Quantidade_Estoque" />
+        <span asp-validation-for="Quantidade_Estoque" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Unidade_Medida</label>
+      
+        @{
+            var uniMedida = "";
+
+            try
+            {
+                uniMedida = Model.Unidade_Medida;
+            }
+            catch { }
+        }
+        <select asp-for="Unidade_Medida" class="form-control">
+
+            @{
+                if (uniMedida != "")
+                {
+
+                    <option value="@uniMedida" selected>@uniMedida</option>
+
+                }
+            }
+
+            <option value="un">un</option>
+            <option value="cx">cx</option>
+            <option value="kg">kg</option>
+            <option value="g">g</option>
+            <option value="lt">lt</option>
+            <option value="ton">ton</option>
+        </select>
+        <span asp-validation-for="Unidade_Medida" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Link_Foto</label>
+        @try
+        {
+            <img src=" @Model.Link_Foto" width="150" height="150" />
+        }
+        catch { }
+        <input type="text" asp-for="Link_Foto" class="form-control" value=" @Model.Link_Foto" />
+        <span asp-validation-for="Link_Foto" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+    <br />
+    <button type="button" class="btn btn-block btn-primary" onclick="Voltar()">Registro De Produtos</button>
+</form>
+
+<script>
+
+    function Voltar() {
+        window.location.href = "../../Produto/Index";
+    }
+
+</script>

@@ -1,0 +1,28 @@
+﻿<h2>Cadastro de Clientes</h2>
+<hr />
+
+@model SistemaVendas_MVC.Models.ClienteModel
+
+<form asp-controller="Cliente" asp-action="Cadastro" method="post">
+    <input type="hidden" asp-for="Id" value=" @Model.Id " />
+
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" value="@try{ @Model.Nome} catch{ }" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>CNPJ_CPF</label>
+        <input type="text" asp-for="Cpf_Cnpj" class="form-control" value="@try{ @Model.Cpf_Cnpj} catch{ }" />
+        <span asp-validation-for="Cpf_Cnpj" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" asp-for="Email" class="form-control" value="@try{ @ViewBag.Cliente.Email} catch{ }" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+</form>
